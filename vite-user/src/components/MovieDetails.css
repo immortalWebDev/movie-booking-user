@@ -1,0 +1,99 @@
+.movie-details-container {
+    max-width: 800px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #d8d8d8;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* text-align: center; */
+  }
+  
+  .movie-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movie-details-header {
+    margin-bottom: 20px;
+  }
+  
+  .movie-poster {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .trailer-link {
+    margin-top: 10px;
+  }
+  
+  .booking-form {
+    margin-top: 40px;
+  }
+  
+  .booking-form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .booking-form label {
+    margin-bottom: 10px;
+  }
+  
+  .booking-form input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #aca8a8;
+  }
+  
+  .booking-form button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .booking-form button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  .movie-details-container {
+  padding: 20px;
+}
+
+.movie-details {
+  margin-bottom: 20px;
+}
+
+.movie-details-header {
+  margin-bottom: 10px;
+}
+
+.movie-details-body {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 10px;
+}
+
+.movie-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.movie-poster {
+  width: 195px;
+  height: auto;
+  border-radius: 5px;
+  /* flex-direction: row; */
+}
