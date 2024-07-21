@@ -26,6 +26,7 @@ const BookingForm = ({ movie }) => {
       await addDoc(collection(db, "bookings"), {
         ...booking,
         movieName: movie.name,
+        timestamp: new Date(),
       });
 
       const templateParams = {
@@ -71,6 +72,9 @@ const BookingForm = ({ movie }) => {
       setLoading(false);
     }
   };
+
+  const showtimesArray = movie.showtime ? movie.showtime.split(",") : [];
+  // console.log(showtimesArray)
 
   return (
     <div className="booking-form">
