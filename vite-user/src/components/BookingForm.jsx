@@ -48,7 +48,7 @@ const BookingForm = ({ movie }) => {
         )
         .then(
           (result) => {
-            console.log(result.text);
+            // console.log(result.text);
             setLoading(false);
             alert("Booking successful and confirmation email sent!");
           },
@@ -119,10 +119,11 @@ const BookingForm = ({ movie }) => {
             required
           >
             <option value="">Select Showtime</option>
-            <option value="12:00 PM">12:00 PM</option>
-            <option value="3:00 PM">3:00 PM</option>
-            <option value="6:00 PM">6:00 PM</option>
-            <option value="9:00 PM">9:00 PM</option>
+            {showtimesArray.map((time, index) => (
+              <option key={index} value={time.trim()}>
+                {time.trim()}
+              </option>
+            ))}
           </select>
         </label>
         <label>
