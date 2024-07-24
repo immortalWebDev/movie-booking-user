@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import MovieDetails from './components/MovieDetails';
-import './styles.css';
+import './App.css';
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
       <Header />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
       </div>

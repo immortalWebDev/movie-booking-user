@@ -7,12 +7,19 @@ import BookingForm from "./BookingForm";
 
 const MovieDetails = () => {
   const { id } = useParams();
+  console.log(id);
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     const fetchMovie = async () => {
       const docRef = doc(db, "movies", id);
+
+      // const docRef2 = doc(db, "movies", 'MTficRwVhBMOtkwT04Rz');
+      // const docSnap2 = await getDoc(docRef2);
+      // console.log(docSnap2.data())
+      
       const docSnap = await getDoc(docRef);
+
       if (docSnap.exists()) {
         setMovie(docSnap.data());
       } else {
@@ -22,7 +29,12 @@ const MovieDetails = () => {
     fetchMovie();
   }, [id]);
 
-  if (!movie) return <div>Loading...</div>;
+  if (!movie)
+    return (
+      <p style={{ textAlign: "center", fontSize: "25px" }}>
+        Fetching your movie details...
+      </p>
+    );
 
   return (
     <div className="movie-details-container">
@@ -45,7 +57,8 @@ const MovieDetails = () => {
             <strong>IMDB Rating:</strong> {movie.imdbRating}
           </p>
           <p>
-            <strong>Showtime:</strong> {movie.showtime}
+            <strong>Show timings:</strong> {movie.showtime}
+            {/* {console.log(movie.showtime)} */}
           </p>
         </div>
         <div className="movie-details-body">
