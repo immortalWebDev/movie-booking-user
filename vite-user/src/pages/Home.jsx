@@ -1,116 +1,123 @@
-import React, { useEffect, useState } from 'react';
-import { db } from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
-import './Home.css'; 
+import React, { useEffect, useState } from "react";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { Link } from "react-router-dom";
+import "./Home.css";
+import useDebounce from "./useDebounce";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [categorizedMovies, setCategorizedMovies] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [search,setSearch] = useState("")
+
+  const debouncedSearch = useDebounce(search,600)
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const querySnapshot = await getDocs(collection(db, 'movies'));
-      setMovies(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    const fetchCategoriesAndMovies = async () => {
+      setLoading(true);
+
+      // Fetch categories
+      const categoriesSnapshot = await getDocs(collection(db, "categories"));
+      const categoriesList = categoriesSnapshot.docs.map(doc => doc.data().name.toLowerCase());
+      // console.log(categoriesList)
+      setCategories(categoriesList);
+
+      // Fetch movies
+      const moviesSnapshot = await getDocs(collection(db, "movies"));
+      // console.log(moviesSnapshot)
+      const moviesList = moviesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      // console.log(moviesList)
+
+
+      setMovies(moviesList);
+
+      // Categorize movies
+      // console.log(categoriesList)
+      const categorized = {};
+      categoriesList.forEach(category => {
+        categorized[category] = [];
+      });
+
+      // console.log(categorized)
+      // console.log(moviesList)
+
+      moviesList.forEach(movie => {
+        const category = movie.showas.toLowerCase();
+        if (categorized[category]) {
+          categorized[category].push(movie);
+        }
+      });
+
+      setCategorizedMovies(categorized);
+      setLoading(false);
     };
-    fetchMovies();
+
+    fetchCategoriesAndMovies();
   }, []);
 
-  const classifyMoviesByCategory = () => {
-    const categorizedMovies = {
-      topMovies: [],
-      topRated: [],
-      superhero: [],
-      anime: [],
-    };
+  const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(debouncedSearch.toLowerCase()))
 
-    movies.forEach(movie => {
-      const showAs = movie.showas.toLowerCase();
-      
-      if (showAs === 'top movies') {
-        categorizedMovies.topMovies.push(movie);
-      } else if (showAs === 'top rated') {
-        categorizedMovies.topRated.push(movie);
-      } else if (showAs === 'superhero') {
-        categorizedMovies.superhero.push(movie);
-      } else if (showAs === 'anime') {
-        categorizedMovies.anime.push(movie);
-      }
-    });
+  //check debounce
+  useEffect(() => {
+    console.log(filteredMovies);
+  }, [debouncedSearch]);
 
-    return categorizedMovies;
-  };
+  const categorizedFilteredMovies = {}
+  categories.forEach(category => {
+    categorizedFilteredMovies[category] = []
+  })
 
-  const categorizedMovies = classifyMoviesByCategory();
+  filteredMovies.forEach(movie => {
+    const category = movie.showas.toLowerCase()
+    if(categorizedFilteredMovies[category]){
+      categorizedFilteredMovies[category].push(movie)
+    }
+  })
 
+
+  let noMoviesFound = true;
+  for(const cat of categories){
+    if(categorizedFilteredMovies[cat].length > 0)
+      noMoviesFound = false
+  }
+  
   return (
     <div>
+      <div className="header">
       <h1>Now Playing</h1>
+      <input
+      className="search-box"
+      type="search"
+      placeholder="Search movies..."
+      value={search}
+      onChange={(event) => setSearch(event.target.value)}></input>
+      </div>
       <hr />
 
-      {/* Top Movies */}
-      {categorizedMovies.topMovies.length > 0 && (
-        <div className="movie-category">
-          <h3>Top Movies</h3>
-          <ul>
-            {categorizedMovies.topMovies.map(movie => (
-              <li key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                  {movie.name} - {movie.showtime} 
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {loading ? (
+        <p>Fetching currently playing movies...</p>
+      ) : noMoviesFound ? (<p>No movies found. Come again later!</p>) : (
+        <>
+          {categories.map(category => (
+            categorizedFilteredMovies[category] && categorizedFilteredMovies[category].length > 0 && (
+              <div className="movie-category" key={category}>
+                <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+                <ul>
+                  {categorizedFilteredMovies[category].map(movie => (
+                    <li key={movie.id}>
+                      <Link to={`/movie/${movie.id}`}>
+                        {movie.name} - {movie.showtime}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          ))}
+        </>
       )}
-
-      {/* Top Rated */}
-      {categorizedMovies.topRated.length > 0 && (
-        <div className="movie-category">
-          <h3>Top Rated</h3>
-          <ul>
-            {categorizedMovies.topRated.map(movie => (
-              <li key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                  {movie.name} - {movie.showtime} 
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Superhero */}
-      {categorizedMovies.superhero.length > 0 && (
-        <div className="movie-category">
-          <h3>Superhero</h3>
-          <ul>
-            {categorizedMovies.superhero.map(movie => (
-              <li key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                  {movie.name} - {movie.showtime} 
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Anime */}
-      {categorizedMovies.anime.length > 0 && (
-        <div className="movie-category">
-          <h3>Anime</h3>
-          <ul>
-            {categorizedMovies.anime.map(movie => (
-              <li key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                  {movie.name} - {movie.showtime} 
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
     </div>
   );
 };
