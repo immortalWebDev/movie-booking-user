@@ -30,6 +30,11 @@
 }
 
 .movie-category a:hover {
-  /* color: #0056b3;  */
   background-color: #dbd4d4; 
+}
+
+.search-box {
+  padding: 8px;
+  font-size: 16px;
+  margin-right:20px
 }
