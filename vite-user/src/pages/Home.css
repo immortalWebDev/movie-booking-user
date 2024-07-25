@@ -21,7 +21,8 @@
 
 .movie-category a {
   text-decoration: none;
-  color: #226cbb; 
+  /* color: #226cbb;  */
+  color: #333333;
   font-size: 1.1rem;
   font-weight: bold;
   transition: color 0.3s, background-color 0.3s;
@@ -30,11 +31,39 @@
 }
 
 .movie-category a:hover {
-  background-color: #dbd4d4; 
+  /* background-color: #dbd4d4;  */
+  background-color: #cce7ff; 
+}
+.now-playing{
+  background-color: rgba(216, 216, 216, 0.8);
+  border-radius: 20px;
+  padding-left: 15px;
+  padding-bottom: 1px;
+  margin-right: 4rem;
+  min-height: 80vh;
+
+}
+
+.now-playing p {
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .search-box {
-  padding: 8px;
-  font-size: 16px;
-  margin-right:20px
+  padding: 12px 20px;
+  font-size: 17px;
+  margin-right: 30px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.search-box:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.search-box::placeholder {
+  color: #696767;
 }
