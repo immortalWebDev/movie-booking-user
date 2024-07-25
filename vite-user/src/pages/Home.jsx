@@ -59,10 +59,10 @@ const Home = () => {
 
   const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(debouncedSearch.toLowerCase()))
 
-  //check debounce
-  useEffect(() => {
-    console.log(filteredMovies);
-  }, [debouncedSearch]);
+  // //check debounce
+  // useEffect(() => {
+  //   console.log(filteredMovies);
+  // }, [debouncedSearch]);
 
   const categorizedFilteredMovies = {}
   categories.forEach(category => {
@@ -84,7 +84,7 @@ const Home = () => {
   }
   
   return (
-    <div>
+    <div className="now-playing">
       <div className="header">
       <h1>Now Playing</h1>
       <input
@@ -94,7 +94,7 @@ const Home = () => {
       value={search}
       onChange={(event) => setSearch(event.target.value)}></input>
       </div>
-      <hr />
+      <hr style={{ borderColor: 'gray' }} />
 
       {loading ? (
         <p>Fetching currently playing movies...</p>
@@ -103,7 +103,7 @@ const Home = () => {
           {categories.map(category => (
             categorizedFilteredMovies[category] && categorizedFilteredMovies[category].length > 0 && (
               <div className="movie-category" key={category}>
-                <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+                <h3 className="category-heading">{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
                 <ul>
                   {categorizedFilteredMovies[category].map(movie => (
                     <li key={movie.id}>
@@ -113,6 +113,7 @@ const Home = () => {
                     </li>
                   ))}
                 </ul>
+                <hr style={{color:'black'}} />
               </div>
             )
           ))}
