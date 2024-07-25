@@ -49,7 +49,7 @@ const BookingForm = ({ movie }) => {
         .then(
           (result) => {
             // console.log(result.text);
-            setLoading(false);
+            // setLoading(false);
             alert("Booking successful and confirmation email sent!");
           },
           (error) => {
