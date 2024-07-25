@@ -5,7 +5,8 @@
     padding-right: 10px;
     border: 5px solid #ccc;
     border-radius: 20px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    background-color:rgba(216, 216, 216, 0.7);
   }
   
   .booking-form h3 {
