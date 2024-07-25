@@ -1,5 +1,5 @@
 header {
-    background-color: #333;
+    background-color: #4d4a4a;
     color: #fff;
     padding: 1rem;
     text-align: center;
@@ -15,3 +15,9 @@ header {
     margin: 0;
   }
   
+
+  .active-link {
+    font-weight: bold;
+    color: rgb(193, 207, 110); 
+    text-decoration: underline;
+  }
