@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import emailjs from "emailjs-com";
 import './BookingForm.css'; 

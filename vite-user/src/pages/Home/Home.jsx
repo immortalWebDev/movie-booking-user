@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import useDebounce from "./useDebounce";
+import useDebounce from '../../hooks/useDebounce'
 
 const Home = () => {
   const [movies, setMovies] = useState([]);

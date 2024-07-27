@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import "./MovieDetails.css";
-import BookingForm from "./BookingForm";
+import BookingForm from "../BookingForm/BookingForm";
 
 const MovieDetails = () => {
   const { id } = useParams();
