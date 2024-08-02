@@ -41,10 +41,10 @@ const BookingForm = ({ movie }) => {
 
       emailjs
         .send(
-          "service_uv0t6rp",
-          "template_rqjkxyo",
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
           templateParams,
-          "2E-BbFioeu3Im4zfi"
+          import.meta.env.VITE_EMAILJS_USER_ID,
         )
         .then(
           (result) => {
