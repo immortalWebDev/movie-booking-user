@@ -20,6 +20,7 @@ const Home = () => {
 
       // Fetch categories
       const categoriesSnapshot = await getDocs(collection(db, "categories"));
+      // console.log(categoriesSnapshot)
       const categoriesList = categoriesSnapshot.docs.map(doc => doc.data().name.toLowerCase());
       // console.log(categoriesList)
       setCategories(categoriesList);
@@ -40,7 +41,6 @@ const Home = () => {
         categorized[category] = [];
       });
 
-      // console.log(categorized)
       // console.log(moviesList)
 
       moviesList.forEach(movie => {
@@ -50,7 +50,11 @@ const Home = () => {
         }
       });
 
+    
       setCategorizedMovies(categorized);
+
+      // console.log(categorized)
+
       setLoading(false);
     };
 
