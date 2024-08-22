@@ -1,4 +1,4 @@
-.maintenance-container {
+.maintenanceContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,18 +11,18 @@
   padding: 20px;
 }
 
-h1 {
+.title {
   font-size: 3rem;
   margin-bottom: 20px;
   color: #ff5722; 
 }
 
-p {
+.message {
   font-size: 1.2rem;
   margin-bottom: 20px;
 }
 
-blockquote {
+.quote {
   font-size: 1.5rem;
   font-style: italic;
   border-left: 4px solid #ff5722; 
@@ -30,12 +30,12 @@ blockquote {
   margin: 20px 0;
 }
 
-blockquote footer {
+.quoteFooter {
   font-size: 1rem;
   color: #555;
 }
 
-.team-signature {
+.signature {
   font-size: 1.2rem;
   color: #888;
   margin-top: 20px;
