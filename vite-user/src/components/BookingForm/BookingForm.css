@@ -1,67 +1,101 @@
 .booking-form {
-    max-width: 420px;
-    margin: 20px auto;
-    padding: 25px;
-    padding-right: 10px;
-    border: 5px solid #ccc;
-    border-radius: 20px;
-    /* background-color: #f9f9f9; */
-    background-color:rgba(216, 216, 216, 0.7);
-  }
-  
-  .booking-form h3 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .booking-form form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 25px;
+  padding-right: 10px;
+  border: 5px solid #ccc;
+  border-radius: 20px;
+  background-color: rgba(216, 216, 216, 0.7);
+}
 
+.booking-form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.booking-form form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.booking-form label {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.booking-form button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  margin-top: 0px;
+}
+
+.booking-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.booking-form button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .booking-form {
+    max-width: 60%;
+    padding: 25px;
   }
-  
-  .booking-form label {
-    margin-bottom: 10px;
-    font-weight: bold;
+
+  .booking-form h3 {
+    font-size: 1.4rem;
   }
-  
- 
 
   .booking-form input,
   .booking-form select {
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 100%; 
-    box-sizing: border-box; 
-  }
-  
-  
-  .booking-form button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
     font-size: 16px;
-    margin: 5px;
-    margin-top: 0px;
-  }
-  
-  .booking-form button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .booking-form button:hover {
-    background-color: #0056b3;
   }
 
-  
-  
+  .booking-form button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-form {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  .booking-form h3 {
+    font-size: 1.2rem;
+  }
+
+  .booking-form input,
+  .booking-form select {
+    font-size: 14px;
+  }
+
+  .booking-form button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
