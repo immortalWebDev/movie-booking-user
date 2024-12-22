@@ -89,7 +89,7 @@ const Home = () => {
   
   return (
     <div className="now-playing">
-      <div className="header">
+      <div className="header-now-playing">
       <h1>Now Playing</h1>
       <input
       className="search-box"
@@ -98,11 +98,12 @@ const Home = () => {
       value={search}
       onChange={(event) => setSearch(event.target.value)}></input>
       </div>
-      <hr style={{ borderColor: 'gray' }} />
+      
+      <hr className="top-hr" />
 
       {loading ? (
-        <p>Fetching currently playing movies...</p>
-      ) : noMoviesFound ? (<p>No movies found. Come again later!</p>) : (
+        <p className="fetching-movies">Fetching currently playing movies...</p>
+      ) : noMoviesFound ? (<p className="not-found-movies">No movies found. Come again later!</p>) : (
         <>
           {categories.map(category => (
             categorizedFilteredMovies[category] && categorizedFilteredMovies[category].length > 0 && (
@@ -117,7 +118,7 @@ const Home = () => {
                     </li>
                   ))}
                 </ul>
-                <hr style={{color:'black'}} />
+                <hr/>
               </div>
             )
           ))}
