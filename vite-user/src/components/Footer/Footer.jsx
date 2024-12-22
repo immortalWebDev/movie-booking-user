@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>&copy; 2024 Movie Booking. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} Made with 💝 by Piyush</p>
     </footer>
   );
 };
