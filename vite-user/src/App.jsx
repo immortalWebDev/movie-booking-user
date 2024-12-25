@@ -7,7 +7,7 @@ import MaintenancePage from './components/MaintainancePage/MaintainancePage';
 import './App.css';
 
 const App = () => {
-  const isMaintenanceMode = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
+  const isMaintenanceMode = false;
 
   return (
     <Router>
