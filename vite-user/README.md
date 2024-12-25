@@ -96,6 +96,10 @@ We welcome contributions! Whether it’s suggestions, bug fixes, or new features
 3. Submit a pull request for review.
 
 
+## License 📜
+
+Permission is required before usage - see the [LICENSE](LICENSE) file for details.
+
 ## 📧 Contact
 
 For any inquiries, feedback, or support:

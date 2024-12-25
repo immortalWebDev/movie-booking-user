@@ -111,7 +111,8 @@ const Home = () => {
                 <h3 className="category-heading">{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
                 <ul>
                   {categorizedFilteredMovies[category].map(movie => (
-                    <li key={movie.id}>
+                    // <li key={movie.id}>
+                    <li key={`${movie.id}-${movie.showtime}`}>
                       <Link to={`/movie/${movie.id}`}>
                         {movie.name} - {movie.showtime}
                       </Link>

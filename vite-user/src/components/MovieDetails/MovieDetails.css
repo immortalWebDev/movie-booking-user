@@ -73,7 +73,7 @@
 
 @media (max-width: 768px) {
   .movie-details-container {
-    padding: 15px;
+    padding: 7px;
   }
 
   .movie-main-info,
@@ -92,11 +92,14 @@
   .movie-details-header {
     font-size: 1.2rem;
   }
+  h2{
+    margin:12px;
+  }
 }
 
 @media (max-width: 480px) {
   .movie-details-container {
-    padding: 10px;
+    padding: 5px;
   }
 
   .movie-main-info,
@@ -119,5 +122,14 @@
 
   .movie-details-header {
     font-size: 1.1rem;
+  }
+  h2{
+    margin: 10px;
+  }
+}
+
+@media(max-width:1024px){
+  .movie-details-container {
+    padding: 5px;
   }
 }
