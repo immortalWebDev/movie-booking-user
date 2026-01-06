@@ -2,13 +2,30 @@ import React, { useState } from "react";
 import { db } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import emailjs from "emailjs-com";
-import './BookingForm.css'; 
+import "./BookingForm.css";
+
+const puneTheatres = [
+  "City Pride Pune",
+  "INOX Mumbai",
+  "PVR Phoenix Thane",
+  "PVR – Pavilion Mall Delhi",
+  "PVR – Kumar Pacific",
+  "E-Square – Xion Mall",
+  "Cinepolis – Westend Mall",
+  "Vishal Cinemaas – Pimpri",
+  "Rahul 70mm",
+];
+
 
 const BookingForm = ({ movie }) => {
+
+  // console.log(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+
   const [booking, setBooking] = useState({
     name: "",
     email: "",
     phone: "",
+    venue: "",
     showtime: "",
     date: "",
   });
@@ -31,6 +48,7 @@ const BookingForm = ({ movie }) => {
 
       const templateParams = {
         movie_name: movie.name,
+        movie_venue: booking.venue,
         showtime: booking.showtime,
         user_name: booking.name,
         user_email: booking.email,
@@ -44,7 +62,7 @@ const BookingForm = ({ movie }) => {
           import.meta.env.VITE_EMAILJS_SERVICE_ID,
           import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
           templateParams,
-          import.meta.env.VITE_EMAILJS_USER_ID,
+          import.meta.env.VITE_EMAILJS_USER_ID
         )
         .then(
           (result) => {
@@ -62,6 +80,7 @@ const BookingForm = ({ movie }) => {
         name: "",
         email: "",
         phone: "",
+        venue: "",
         showtime: "",
         date: "",
       });
@@ -110,6 +129,24 @@ const BookingForm = ({ movie }) => {
             required
           />
         </label>
+        <label>
+          Theatre:
+          <select
+            name="venue"
+            value={booking.venue}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select a theatre</option>
+
+            {puneTheatres.map((theatre, index) => (
+              <option key={index} value={theatre}>
+                {theatre}
+              </option>
+            ))}
+          </select>
+        </label>
+
         <label>
           Showtime:
           <select
